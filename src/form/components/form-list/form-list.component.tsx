@@ -3,13 +3,13 @@ import React, { useCallback } from 'react';
 import { Input, Form } from 'antd';
 
 import { FormData } from 'form/mocks';
-import { useForm } from 'form/use-form.hook';
+import { UseForm } from 'form/use-form.hook';
 
 interface Props {
   data: FormData[];
-  fields: ReturnType<typeof useForm>['models']['fields'];
+  fields: UseForm['models']['fields'];
   actions: Pick<
-    ReturnType<typeof useForm>['operations'],
+    UseForm['operations'],
     'handlePetQuestionOnChange' | 'handleAdditionalNotesOnChange'
   >;
 }

@@ -1,12 +1,16 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState } from 'react';
 import { DataObject } from 'shared/types';
+import { FormData } from './mocks';
 
 interface FormState {
   selected: string[];
   data: DataObject;
   notes: string;
 }
+
+export type UseForm = ReturnType<typeof useForm>;
 
 export const useForm = () => {
   const [fields, setFields] = useState<FormState>({
@@ -28,8 +32,20 @@ export const useForm = () => {
     return updatedFields;
   };
 
-  const handlePetSelection = (id: string[]): void => {
-    setFields({ ...fields, selected: id });
+  const handleSelection = (id: string, selected: boolean): void => {
+    if (selected) {
+      setFields({ ...fields, selected: fields.selected.filter((itemId) => itemId !== id) });
+      return;
+    }
+    setFields({ ...fields, selected: fields.selected.concat(id) });
+  };
+
+  const handleSelectAll = (data: FormData[]) => {
+    if (data.length === fields.selected.length) {
+      setFields({ ...fields, selected: [] });
+      return;
+    }
+    setFields({ ...fields, selected: data.map((item) => item.id) });
   };
 
   const handlePetQuestionOnChange = (payload: {
@@ -70,7 +86,8 @@ export const useForm = () => {
     operations: {
       handleError,
       handleSubmit,
-      handlePetSelection,
+      handleSelectAll,
+      handleSelection,
       handlePetQuestionOnChange,
       handleAdditionalNotesOnChange,
     },
