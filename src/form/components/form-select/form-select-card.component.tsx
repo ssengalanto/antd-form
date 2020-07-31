@@ -13,7 +13,7 @@ interface Props {
   onClick: UseForm['operations']['handleSelection'];
 }
 
-export const FormSelectCard: React.FC<Props> = ({ data: { id, pet }, selected, onClick }) => (
+export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, selected, onClick }) => (
   <S.Card selected={selected} onClick={() => onClick(id, selected)}>
     {selected && (
       <S.Absolute>
@@ -22,7 +22,7 @@ export const FormSelectCard: React.FC<Props> = ({ data: { id, pet }, selected, o
     )}
     <Space>
       <Col>
-        <Avatar size={40} icon={<UserOutlined />} />
+        <Avatar size={40} icon={!src && <UserOutlined />} src={src} />
       </Col>
       <Col>
         <S.Title>{pet}</S.Title>
