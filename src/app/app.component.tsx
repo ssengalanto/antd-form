@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const App: React.FC = () => <div>app</div>;
+import { S } from './app.styles';
+
+export const App: React.FC = () => <S.Layout>app</S.Layout>;
