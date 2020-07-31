@@ -44,7 +44,7 @@ export const FormSelect: React.FC<Props> = ({ label, description, data, fields, 
       <S.CardContainer>
         <Row gutter={24}>
           {data.map((item) => (
-            <Col>
+            <Col key={item.id}>
               <FormSelectCard
                 key={item.id}
                 data={item}
