@@ -19,10 +19,23 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix \"./src/**/*.{ts,tsx,js,jsx}\"",
+    "lint:css": "stylelint \"./src/**/*.{ts,tsx,js,jsx,css,scss}\"",
+    "format": "prettier --write \"./src/**/*.{ts,tsx,js,jsx}\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "lint-staged": {
+    "*.{ts, tsx, js, jsx, css, scss}": [
+      "eslint --fix",
+      "stylelint",
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "browserslist": {
     "production": [
