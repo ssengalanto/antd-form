@@ -1,12 +1,12 @@
 import React from 'react';
-import { Form, Button, Select } from 'antd';
+import { Form, Button } from 'antd';
 
 import { FormData } from './mocks';
-import { FormList } from './components';
-import { useForm } from './use-form.hook';
+import { UseForm } from './use-form.hook';
+import { FormList, FormSelect } from './components';
 
 interface Props {
-  form: ReturnType<typeof useForm>;
+  form: UseForm;
   data: FormData[];
 }
 
@@ -16,7 +16,8 @@ export const AntdForm: React.FC<Props> = ({ data, form }) => {
     operations: {
       handleError,
       handleSubmit,
-      handlePetSelection,
+      handleSelectAll,
+      handleSelection,
       handlePetQuestionOnChange,
       handleAdditionalNotesOnChange,
     },
@@ -25,15 +26,13 @@ export const AntdForm: React.FC<Props> = ({ data, form }) => {
   return (
     <>
       <Form layout="vertical" name="basic" onFinish={handleSubmit} onFinishFailed={handleError}>
-        <Form.Item label="Select Pet">
-          <Select mode="multiple" placeholder="Please select" onChange={handlePetSelection}>
-            {data.map(({ id, pet }) => (
-              <Select.Option key={id} value={id}>
-                {pet}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
+        <FormSelect
+          label="Select Pets"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          data={data}
+          fields={fields}
+          actions={{ handleSelection, handleSelectAll }}
+        />
 
         <FormList
           data={data}

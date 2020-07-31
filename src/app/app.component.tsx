@@ -6,6 +6,8 @@ import { S } from './app.styles';
 
 export const App: React.FC = () => (
   <S.Layout>
-    <Form />
+    <div style={{ width: '50%' }}>
+      <Form />
+    </div>
   </S.Layout>
 );
