@@ -24,7 +24,8 @@ export const formData = [
   {
     id: 'petId2',
     pet: 'cat',
-    src: '',
+    src:
+      'http://radioadelaide.org.au/wp-content/uploads/2019/09/Adorable-animal-cat-20787-790x435.jpg',
     questions: [
       {
         id: 'questionId3',

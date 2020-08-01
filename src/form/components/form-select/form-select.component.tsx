@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Row, Col, Typography, Button, Space } from 'antd';
+import { Row, Col, Typography, Button, Space, Radio } from 'antd';
 
 import { FormData } from 'form/mocks';
 import { UseForm } from 'form/use-form.hook';
@@ -49,7 +49,7 @@ export const FormSelect: React.FC<Props> = ({ label, description, data, fields, 
                 key={item.id}
                 data={item}
                 selected={isSelected(item.id)}
-                onClick={actions.handleSelection}
+                onChange={actions.handleSelection}
               />
             </Col>
           ))}

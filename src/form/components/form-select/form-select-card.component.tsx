@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Col, Space } from 'antd';
+import { Avatar, Col, Space, Checkbox } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 import { FormData } from 'form/mocks';
@@ -10,23 +10,20 @@ import { S } from './form-select.styles';
 interface Props {
   data: FormData;
   selected: boolean;
-  onClick: UseForm['operations']['handleSelection'];
+  onChange: UseForm['operations']['handleSelection'];
 }
 
-export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, selected, onClick }) => (
-  <S.Card selected={selected} onClick={() => onClick(id, selected)}>
-    {selected && (
-      <S.Absolute>
-        <S.SelectedIcon twoToneColor="#52c41a" />
-      </S.Absolute>
-    )}
-    <Space>
-      <Col>
-        <Avatar size={40} icon={!src && <UserOutlined />} src={src} />
-      </Col>
-      <Col>
-        <S.Title>{pet}</S.Title>
-      </Col>
-    </Space>
+export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, selected, onChange }) => (
+  <S.Card selected={selected}>
+    <Checkbox onChange={() => onChange(id, selected)} checked={selected}>
+      <Space>
+        <Col>
+          <Avatar size={40} icon={!src && <UserOutlined />} src={src} />
+        </Col>
+        <Col>
+          <S.Title>{pet}</S.Title>
+        </Col>
+      </Space>
+    </Checkbox>
   </S.Card>
 );
