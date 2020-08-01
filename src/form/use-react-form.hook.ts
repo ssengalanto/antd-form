@@ -34,6 +34,10 @@ export const useReactForm = () => {
   const fields = watch();
 
   const validateInputs = (): FormState => {
+    if (!fields.selected.length) {
+      return defaultValues;
+    }
+
     const dataKeys = Object.keys(fields.data);
     const updatedFields = { ...fields };
 

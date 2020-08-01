@@ -41,19 +41,17 @@ export const FormSelect: React.FC<Props> = ({ label, description, data, fields, 
           </Button>
         </Col>
       </Row>
-      <S.CardContainer>
-        <Row gutter={24}>
-          {data.map((item) => (
-            <Col key={item.id}>
-              <FormSelectCard
-                key={item.id}
-                data={item}
-                selected={isSelected(item.id)}
-                onChange={actions.handleSelection}
-              />
-            </Col>
-          ))}
-        </Row>
+      <S.CardContainer gutter={24}>
+        {data.map((item) => (
+          <Col key={item.id}>
+            <FormSelectCard
+              key={item.id}
+              data={item}
+              selected={isSelected(item.id)}
+              onChange={actions.handleSelection}
+            />
+          </Col>
+        ))}
       </S.CardContainer>
     </>
   );

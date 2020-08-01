@@ -34,7 +34,7 @@ const Absolute = styled.div`
   right: -0.5rem;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled(Row)`
   padding: 2rem 0;
 `;
 

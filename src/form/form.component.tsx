@@ -23,28 +23,26 @@ export const AntdForm: React.FC<Props> = ({ data, form }) => {
   } = form;
 
   return (
-    <>
-      <Form layout="vertical" name="basic" onFinish={handleSubmit}>
-        <FormSelect
-          label="Select Pets"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          data={data}
-          fields={fields}
-          actions={{ handleSelection, handleSelectAll }}
-        />
+    <Form layout="vertical" name="basic" onFinish={handleSubmit}>
+      <FormSelect
+        label="Select Pets"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        data={data}
+        fields={fields}
+        actions={{ handleSelection, handleSelectAll }}
+      />
 
-        <FormList
-          data={data}
-          fields={fields}
-          actions={{ handleNotesOnChange, handleQuestionOnChange }}
-        />
+      <FormList
+        data={data}
+        fields={fields}
+        actions={{ handleNotesOnChange, handleQuestionOnChange }}
+      />
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
