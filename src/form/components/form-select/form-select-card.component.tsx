@@ -3,14 +3,14 @@ import { Avatar, Col, Space, Checkbox } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 import { FormData } from 'form/mocks';
-import { UseForm } from 'form/use-form.hook';
+import { useReactFormType } from 'form/use-react-form.hook';
 
 import { S } from './form-select.styles';
 
 interface Props {
   data: FormData;
   selected: boolean;
-  onChange: UseForm['operations']['handleSelection'];
+  onChange: useReactFormType['operations']['handleSelection'];
 }
 
 export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, selected, onChange }) => (

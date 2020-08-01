@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { Row, Col, Typography, Button, Space, Radio } from 'antd';
+import { Row, Col, Typography, Button, Space } from 'antd';
 
 import { FormData } from 'form/mocks';
-import { UseForm } from 'form/use-form.hook';
+import { useReactFormType } from 'form/use-react-form.hook';
 
 import { S } from './form-select.styles';
 import { FormSelectCard } from './form-select-card.component';
@@ -13,8 +13,8 @@ interface Props {
   label: string;
   data: FormData[];
   description?: string;
-  fields: UseForm['models']['fields'];
-  actions: Pick<UseForm['operations'], 'handleSelection' | 'handleSelectAll'>;
+  fields: useReactFormType['models']['fields'];
+  actions: Pick<useReactFormType['operations'], 'handleSelection' | 'handleSelectAll'>;
 }
 
 export const FormSelect: React.FC<Props> = ({ label, description, data, fields, actions }) => {

@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { DataObject } from 'shared/types';
@@ -12,20 +13,25 @@ interface FormState {
   notes: string;
 }
 
+const defaultValues: FormState = {
+  selected: [],
+  data: {},
+  notes: '',
+};
+
 export type useReactFormType = ReturnType<typeof useReactForm>;
 
 export const useReactForm = () => {
-  const form = useForm<FormState>({
-    defaultValues: {
-      selected: [],
-      data: {},
-      notes: '',
-    },
-  });
+  const form = useForm({ defaultValues });
+  const { setValue, watch, register } = form;
 
-  const { setValue, getValues } = form;
+  useEffect(() => {
+    Object.keys(defaultValues).forEach((key) => {
+      register({ name: key });
+    });
+  }, [register]);
 
-  const fields = getValues();
+  const fields = watch();
 
   const validateInputs = (): FormState => {
     const dataKeys = Object.keys(fields.data);
@@ -62,6 +68,24 @@ export const useReactForm = () => {
     );
   };
 
+  const handleQuestionOnChange = (payload: {
+    value: string;
+    petId: string;
+    questionId: string;
+  }) => {
+    const { value, petId, questionId } = payload;
+
+    const updatedData = fields.data[petId] ? { ...fields.data[petId] } : {};
+
+    updatedData[questionId] = value;
+
+    setValue('data', { ...fields.data, [petId]: { ...updatedData } });
+  };
+
+  const handleNotesOnChange = (notes: string): void => {
+    setValue('notes', notes);
+  };
+
   const handleSubmit = () => {
     const data = validateInputs();
     alert(JSON.stringify(data, null, 2));
@@ -73,6 +97,8 @@ export const useReactForm = () => {
       handleSubmit,
       handleSelection,
       handleSelectAll,
+      handleQuestionOnChange,
+      handleNotesOnChange,
     },
   };
 };
