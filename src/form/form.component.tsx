@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, Button } from 'antd';
 
 import { FormData } from './mocks';
-import { UseForm } from './use-form.hook';
 import { FormList, FormSelect } from './components';
+import { useReactFormType } from './use-react-form.hook';
 
 interface Props {
-  form: UseForm;
+  form: useReactFormType;
   data: FormData[];
 }
 
@@ -14,18 +14,17 @@ export const AntdForm: React.FC<Props> = ({ data, form }) => {
   const {
     models: { fields },
     operations: {
-      handleError,
       handleSubmit,
       handleSelectAll,
       handleSelection,
-      handlePetQuestionOnChange,
-      handleAdditionalNotesOnChange,
+      handleNotesOnChange,
+      handleQuestionOnChange,
     },
   } = form;
 
   return (
     <>
-      <Form layout="vertical" name="basic" onFinish={handleSubmit} onFinishFailed={handleError}>
+      <Form layout="vertical" name="basic" onFinish={handleSubmit}>
         <FormSelect
           label="Select Pets"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -37,7 +36,7 @@ export const AntdForm: React.FC<Props> = ({ data, form }) => {
         <FormList
           data={data}
           fields={fields}
-          actions={{ handleAdditionalNotesOnChange, handlePetQuestionOnChange }}
+          actions={{ handleNotesOnChange, handleQuestionOnChange }}
         />
 
         <Form.Item>

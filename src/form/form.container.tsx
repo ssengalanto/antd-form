@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { formData } from './mocks';
-import { useForm } from './use-form.hook';
 import { AntdForm } from './form.component';
+import { useReactForm } from './use-react-form.hook';
 
 export const Form: React.FC = () => {
-  const form = useForm();
+  const form = useReactForm();
   return <AntdForm form={form} data={formData} />;
 };

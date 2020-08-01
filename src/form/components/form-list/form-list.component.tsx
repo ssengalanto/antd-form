@@ -3,15 +3,12 @@ import React, { useCallback } from 'react';
 import { Input, Form } from 'antd';
 
 import { FormData } from 'form/mocks';
-import { UseForm } from 'form/use-form.hook';
+import { useReactFormType } from 'form/use-react-form.hook';
 
 interface Props {
   data: FormData[];
-  fields: UseForm['models']['fields'];
-  actions: Pick<
-    UseForm['operations'],
-    'handlePetQuestionOnChange' | 'handleAdditionalNotesOnChange'
-  >;
+  fields: useReactFormType['models']['fields'];
+  actions: Pick<useReactFormType['operations'], 'handleQuestionOnChange' | 'handleNotesOnChange'>;
 }
 
 export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
@@ -39,7 +36,7 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
                     <Input
                       value={defaultInputValue}
                       onChange={(e) =>
-                        actions.handlePetQuestionOnChange({
+                        actions.handleQuestionOnChange({
                           value: e.target.value,
                           petId: data.id,
                           questionId: question.id,
@@ -56,7 +53,7 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
       <Form.Item label="Additional notes">
         <Input.TextArea
           value={fields.notes}
-          onChange={(e) => actions.handleAdditionalNotesOnChange(e.target.value)}
+          onChange={(e) => actions.handleNotesOnChange(e.target.value)}
         />
       </Form.Item>
     </>
