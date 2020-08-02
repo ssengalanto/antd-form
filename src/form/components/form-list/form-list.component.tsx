@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-curly-newline */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from 'react';
 import { Input, Form } from 'antd';
 
 import { FormData } from 'form/mocks';
+import { RenderIf } from 'shared/components';
 import { useReactFormType } from 'form/use-react-form.hook';
 
 interface Props {
@@ -14,12 +16,11 @@ interface Props {
 export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
   const getByPetId = useCallback(
     (id: string): FormData | undefined => data.find((data) => data.id === id),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
-  return !fields.selected.length ? null : (
-    <>
+  return (
+    <RenderIf condition={!!fields.selected.length}>
       {fields.selected.map((id) => {
         const data = getByPetId(id);
         return (
@@ -56,6 +57,6 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
           onChange={(e) => actions.handleNotesOnChange(e.target.value)}
         />
       </Form.Item>
-    </>
+    </RenderIf>
   );
 };

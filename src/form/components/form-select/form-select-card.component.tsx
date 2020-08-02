@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Col, Space, Checkbox } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { FileImageOutlined } from '@ant-design/icons';
 
 import { FormData } from 'form/mocks';
 import { useReactFormType } from 'form/use-react-form.hook';
@@ -18,7 +18,7 @@ export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, select
     <Checkbox onChange={() => onChange(id, selected)} checked={selected}>
       <Space>
         <Col>
-          <Avatar size={40} icon={!src && <UserOutlined />} src={src} />
+          <Avatar size={40} icon={!src && <FileImageOutlined />} src={src} />
         </Col>
         <Col>
           <S.Title>{pet}</S.Title>
