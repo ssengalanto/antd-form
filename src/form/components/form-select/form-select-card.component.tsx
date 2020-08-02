@@ -15,13 +15,22 @@ interface Props {
 
 export const FormSelectCard: React.FC<Props> = ({ data: { id, pet, src }, selected, onChange }) => (
   <S.Card selected={selected}>
-    <Checkbox onChange={() => onChange(id, selected)} checked={selected}>
+    <Checkbox
+      onChange={() => onChange(id, selected)}
+      checked={selected}
+      data-test-id="form-select-card-component:checkbox"
+    >
       <Space>
         <Col>
-          <Avatar size={40} icon={!src && <FileImageOutlined />} src={src} />
+          <Avatar
+            size={40}
+            icon={!src && <FileImageOutlined />}
+            src={src}
+            data-test-id="form-select-card-component:avatar"
+          />
         </Col>
         <Col>
-          <S.Title>{pet}</S.Title>
+          <S.Title data-test-id="form-select-card-component:title">{pet}</S.Title>
         </Col>
       </Space>
     </Checkbox>
