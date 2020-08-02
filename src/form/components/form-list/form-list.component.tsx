@@ -4,7 +4,6 @@ import React, { useCallback } from 'react';
 import { Input, Form } from 'antd';
 
 import { FormData } from 'form/mocks';
-import { RenderIf } from 'shared/components';
 import { useReactFormType } from 'form/use-react-form.hook';
 
 interface Props {
@@ -19,8 +18,8 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
     [],
   );
 
-  return (
-    <RenderIf condition={!!fields.selected.length}>
+  return !fields.selected.length ? null : (
+    <>
       {fields.selected.map((id) => {
         const data = getByPetId(id);
         return (
@@ -35,6 +34,7 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
                 return (
                   <Form.Item key={question.id} label={question.content}>
                     <Input
+                      data-test-id="form-list-component:input"
                       value={defaultInputValue}
                       onChange={(e) =>
                         actions.handleQuestionOnChange({
@@ -55,8 +55,9 @@ export const FormList: React.FC<Props> = ({ fields, data, actions }) => {
         <Input.TextArea
           value={fields.notes}
           onChange={(e) => actions.handleNotesOnChange(e.target.value)}
+          data-test-id="form-list-component:text-area"
         />
       </Form.Item>
-    </RenderIf>
+    </>
   );
 };
