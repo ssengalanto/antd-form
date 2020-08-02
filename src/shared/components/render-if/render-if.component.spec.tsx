@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import { MockComponent, findByTestId } from 'tests';
+import { MockComponent } from 'tests';
 
 import { RenderIf } from './render-if.component';
 
@@ -15,7 +15,7 @@ const setup = (props: Partial<Props> = {}): ShallowWrapper => {
   const setupProps = { ...mockedProps, ...props };
   return shallow(
     <RenderIf {...setupProps}>
-      <MockComponent data-test-id="mock-component" />
+      <MockComponent />
     </RenderIf>,
   );
 };
@@ -33,14 +33,12 @@ describe('<RenderIf /> Component', () => {
     });
 
     it('should not render children when condition props is false', () => {
-      const component = findByTestId(wrapper, 'mock-component');
-      expect(component.exists()).toBe(false);
+      expect(wrapper.contains(<MockComponent />)).toBe(false);
     });
 
     it('should render children when condition props is true', () => {
       const wrapper = setup({ condition: true });
-      const component = findByTestId(wrapper, 'mock-component');
-      expect(component.exists()).toBe(true);
+      expect(wrapper.contains(<MockComponent />)).toBe(true);
     });
   });
 });

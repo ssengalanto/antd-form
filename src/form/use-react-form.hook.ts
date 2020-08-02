@@ -22,8 +22,7 @@ const defaultValues: FormState = {
 export type useReactFormType = ReturnType<typeof useReactForm>;
 
 export const useReactForm = () => {
-  const form = useForm({ defaultValues });
-  const { setValue, watch, register } = form;
+  const { setValue, watch, register } = useForm({ defaultValues });
 
   useEffect(() => {
     Object.keys(defaultValues).forEach((key) => {
@@ -96,7 +95,7 @@ export const useReactForm = () => {
   };
 
   return {
-    models: { form, fields },
+    models: { fields },
     operations: {
       handleSubmit,
       handleSelection,

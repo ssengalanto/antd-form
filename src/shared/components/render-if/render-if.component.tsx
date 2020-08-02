@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const RenderIf: React.FC<Props> = ({ condition, children }) => (
-  <>{!condition ? null : children}</>
+  <>{condition ? children : null}</>
 );
