@@ -29,14 +29,19 @@ export const FormSelect: React.FC<Props> = ({ label, description, data, fields, 
         <Col>
           <Row>
             <Space>
-              <S.Label>{label}</S.Label>
-              <Text>{`${selectedCount}/${totalCount}`}</Text>
+              <S.Label data-test-id="form-select-component:label">{label}</S.Label>
+              <Text data-test-id="form-select-component:count">{`${selectedCount}/${totalCount}`}</Text>
             </Space>
           </Row>
-          {description && <Text>{description}</Text>}
+          {description && (
+            <Text data-test-id="form-select-component:description">{description}</Text>
+          )}
         </Col>
         <Col>
-          <Button onClick={() => actions.handleSelectAll(data)}>
+          <Button
+            onClick={() => actions.handleSelectAll(data)}
+            data-test-id="form-select-component:button"
+          >
             {totalCount === selectedCount ? 'Deselect All' : 'Select All'}
           </Button>
         </Col>
@@ -49,6 +54,7 @@ export const FormSelect: React.FC<Props> = ({ label, description, data, fields, 
               data={item}
               selected={isSelected(item.id)}
               onChange={actions.handleSelection}
+              data-test-id="form-select-component:cards"
             />
           </Col>
         ))}
